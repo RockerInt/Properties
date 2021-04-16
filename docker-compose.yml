@@ -1,0 +1,48 @@
+version: '3.4'
+
+services:
+
+  properties:
+    image: ${DOCKER_REGISTRY-}properties
+    build:
+      context: .
+      dockerfile: Services/Properties/Dockerfile
+    depends_on: 
+      - sqlserver
+      - nosqldata
+    networks:
+      - propnet
+    links:
+      - sqlserver
+      - nosqldata
+
+  gateway:
+    image: ${DOCKER_REGISTRY-}gateway
+    build:
+      context: .
+      dockerfile: API/Gateway/Dockerfile
+    depends_on: 
+      - sqlserver
+      - properties
+    networks:
+      - propnet
+    links:
+      - properties
+
+  sqlserver:
+    image: ${DOCKER_REGISTRY-}sqlserver
+    build:
+      context: .
+      dockerfile: DB/Dockerfile
+    networks:
+      - propnet
+
+  nosqldata:
+    image: mongo 
+    networks:
+      - propnet
+
+networks:
+  propnet:
+    driver: "bridge"
+

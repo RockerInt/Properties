@@ -1,0 +1,212 @@
+2021-04-16 05:08:06.543 -05:00 [INF] Configuring web host (Properties.Microservice)...
+2021-04-16 05:08:06.720 -05:00 [INF] Starting web host (Properties.Microservice)...
+2021-04-16 05:13:41.382 -05:00 [INF] Configuring web host (Properties.Microservice)...
+2021-04-16 05:13:41.509 -05:00 [INF] Starting web host (Properties.Microservice)...
+2021-04-16 05:13:43.002 -05:00 [INF] Run Startup
+2021-04-16 05:14:47.785 -05:00 [INF] Begin HttpGet call GetProperties
+2021-04-16 05:14:48.527 -05:00 [WRN] Compiling a query which loads related collections for more than one collection navigation either via 'Include' or through projection but no 'QuerySplittingBehavior' has been configured. By default Entity Framework will use 'QuerySplittingBehavior.SingleQuery' which can potentially result in slow query performance. See https://go.microsoft.com/fwlink/?linkid=2134277 for more information. To identify the query that's triggering this warning call 'ConfigureWarnings(w => w.Throw(RelationalEventId.MultipleCollectionIncludeWarning))'
+2021-04-16 10:18:46.998 +00:00 [INF] Configuring web host (Properties.Microservice)...
+2021-04-16 10:18:47.289 +00:00 [INF] Starting web host (Properties.Microservice)...
+2021-04-16 10:18:48.622 +00:00 [INF] Run Startup
+2021-04-16 10:20:32.441 +00:00 [INF] Configuring web host (Properties.Microservice)...
+2021-04-16 10:20:32.563 +00:00 [INF] Starting web host (Properties.Microservice)...
+2021-04-16 10:20:33.033 +00:00 [INF] Run Startup
+2021-04-16 10:20:49.740 +00:00 [INF] Begin HttpGet call GetProperties
+2021-04-16 10:20:50.477 +00:00 [WRN] Compiling a query which loads related collections for more than one collection navigation either via 'Include' or through projection but no 'QuerySplittingBehavior' has been configured. By default Entity Framework will use 'QuerySplittingBehavior.SingleQuery' which can potentially result in slow query performance. See https://go.microsoft.com/fwlink/?linkid=2134277 for more information. To identify the query that's triggering this warning call 'ConfigureWarnings(w => w.Throw(RelationalEventId.MultipleCollectionIncludeWarning))'
+2021-04-16 10:21:56.047 +00:00 [INF] Begin HttpPost call CreateProperty for: Properties.Models.Property
+2021-04-16 10:26:57.949 +00:00 [INF] Configuring web host (Properties.Microservice)...
+2021-04-16 10:26:58.044 +00:00 [INF] Starting web host (Properties.Microservice)...
+2021-04-16 10:26:58.505 +00:00 [INF] Run Startup
+2021-04-16 10:33:47.570 +00:00 [INF] Configuring web host (Properties.Microservice)...
+2021-04-16 10:33:47.735 +00:00 [INF] Starting web host (Properties.Microservice)...
+2021-04-16 10:33:48.285 +00:00 [INF] Run Startup
+2021-04-16 10:34:18.036 +00:00 [INF] Begin HttpGet call GetPropertiy for id e11e2bb6-48de-4ebc-ab80-4813b627a1f2
+2021-04-16 10:34:18.714 +00:00 [WRN] Compiling a query which loads related collections for more than one collection navigation either via 'Include' or through projection but no 'QuerySplittingBehavior' has been configured. By default Entity Framework will use 'QuerySplittingBehavior.SingleQuery' which can potentially result in slow query performance. See https://go.microsoft.com/fwlink/?linkid=2134277 for more information. To identify the query that's triggering this warning call 'ConfigureWarnings(w => w.Throw(RelationalEventId.MultipleCollectionIncludeWarning))'
+2021-04-16 12:33:01.854 +00:00 [INF] Configuring web host (Properties.Microservice)...
+2021-04-16 12:33:02.130 +00:00 [INF] Starting web host (Properties.Microservice)...
+2021-04-16 12:33:03.198 +00:00 [INF] Run Startup
+2021-04-16 12:33:33.116 +00:00 [INF] Begin HttpGet call GetPropertiy for id 8cc32b40-578d-47c1-bb9f-63240737243f
+2021-04-16 12:33:33.849 +00:00 [WRN] Compiling a query which loads related collections for more than one collection navigation either via 'Include' or through projection but no 'QuerySplittingBehavior' has been configured. By default Entity Framework will use 'QuerySplittingBehavior.SingleQuery' which can potentially result in slow query performance. See https://go.microsoft.com/fwlink/?linkid=2134277 for more information. To identify the query that's triggering this warning call 'ConfigureWarnings(w => w.Throw(RelationalEventId.MultipleCollectionIncludeWarning))'
+2021-04-16 12:36:11.903 +00:00 [INF] Begin HttpPost call CreatePropertyImage for: Properties.Models.PropertyImage
+2021-04-16 12:36:12.062 +00:00 [ERR] Failed executing DbCommand (41ms) [Parameters=[@p0='?' (DbType = Guid), @p1='?' (DbType = Boolean), @p2='?' (Size = 8000) (DbType = Binary), @p3='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SET NOCOUNT ON;
+INSERT INTO [PropertyImage] ([IdPropertyImage], [Enabled], [File], [IdProperty])
+VALUES (@p0, @p1, @p2, @p3);
+2021-04-16 12:36:12.101 +00:00 [ERR] An exception occurred in the database while saving changes for context type 'Properties.Data.PropertiesContext'.
+Microsoft.EntityFrameworkCore.DbUpdateException: An error occurred while updating the entries. See the inner exception for details.
+ ---> Microsoft.Data.SqlClient.SqlException (0x80131904): Cannot insert the value NULL into column 'File', table 'Properties.dbo.PropertyImage'; column does not allow nulls. INSERT fails.
+The statement has been terminated.
+   at Microsoft.Data.SqlClient.SqlCommand.<>c.<ExecuteDbDataReaderAsync>b__169_0(Task`1 result)
+   at System.Threading.Tasks.ContinuationResultTaskFromResultTask`2.InnerInvoke()
+   at System.Threading.Tasks.Task.<>c.<.cctor>b__277_0(Object obj)
+   at System.Threading.ExecutionContext.RunInternal(ExecutionContext executionContext, ContextCallback callback, Object state)
+--- End of stack trace from previous location ---
+   at System.Threading.Tasks.Task.ExecuteWithThreadLocal(Task& currentTaskSlot, Thread threadPoolThread)
+--- End of stack trace from previous location ---
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.ReaderModificationCommandBatch.ExecuteAsync(IRelationalConnection connection, CancellationToken cancellationToken)
+ClientConnectionId:2335b3b3-7703-4b0e-a414-83d82ba8e75f
+Error Number:515,State:2,Class:16
+   --- End of inner exception stack trace ---
+   at Microsoft.EntityFrameworkCore.Update.ReaderModificationCommandBatch.ExecuteAsync(IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.Internal.BatchExecutor.ExecuteAsync(IEnumerable`1 commandBatches, IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.Internal.BatchExecutor.ExecuteAsync(IEnumerable`1 commandBatches, IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.Internal.BatchExecutor.ExecuteAsync(IEnumerable`1 commandBatches, IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.SaveChangesAsync(IList`1 entriesToSave, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.SaveChangesAsync(DbContext _, Boolean acceptAllChangesOnSuccess, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.SqlServer.Storage.Internal.SqlServerExecutionStrategy.ExecuteAsync[TState,TResult](TState state, Func`4 operation, Func`4 verifySucceeded, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.DbContext.SaveChangesAsync(Boolean acceptAllChangesOnSuccess, CancellationToken cancellationToken)
+Microsoft.EntityFrameworkCore.DbUpdateException: An error occurred while updating the entries. See the inner exception for details.
+ ---> Microsoft.Data.SqlClient.SqlException (0x80131904): Cannot insert the value NULL into column 'File', table 'Properties.dbo.PropertyImage'; column does not allow nulls. INSERT fails.
+The statement has been terminated.
+   at Microsoft.Data.SqlClient.SqlCommand.<>c.<ExecuteDbDataReaderAsync>b__169_0(Task`1 result)
+   at System.Threading.Tasks.ContinuationResultTaskFromResultTask`2.InnerInvoke()
+   at System.Threading.Tasks.Task.<>c.<.cctor>b__277_0(Object obj)
+   at System.Threading.ExecutionContext.RunInternal(ExecutionContext executionContext, ContextCallback callback, Object state)
+--- End of stack trace from previous location ---
+   at System.Threading.Tasks.Task.ExecuteWithThreadLocal(Task& currentTaskSlot, Thread threadPoolThread)
+--- End of stack trace from previous location ---
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.ReaderModificationCommandBatch.ExecuteAsync(IRelationalConnection connection, CancellationToken cancellationToken)
+ClientConnectionId:2335b3b3-7703-4b0e-a414-83d82ba8e75f
+Error Number:515,State:2,Class:16
+   --- End of inner exception stack trace ---
+   at Microsoft.EntityFrameworkCore.Update.ReaderModificationCommandBatch.ExecuteAsync(IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.Internal.BatchExecutor.ExecuteAsync(IEnumerable`1 commandBatches, IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.Internal.BatchExecutor.ExecuteAsync(IEnumerable`1 commandBatches, IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.Internal.BatchExecutor.ExecuteAsync(IEnumerable`1 commandBatches, IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.SaveChangesAsync(IList`1 entriesToSave, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.SaveChangesAsync(DbContext _, Boolean acceptAllChangesOnSuccess, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.SqlServer.Storage.Internal.SqlServerExecutionStrategy.ExecuteAsync[TState,TResult](TState state, Func`4 operation, Func`4 verifySucceeded, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.DbContext.SaveChangesAsync(Boolean acceptAllChangesOnSuccess, CancellationToken cancellationToken)
+2021-04-16 12:36:12.220 +00:00 [ERR] An error has occurred: @error
+2021-04-16 12:36:32.140 +00:00 [INF] Begin HttpPost call CreatePropertyImage for: Properties.Models.PropertyImage
+2021-04-16 12:39:42.760 +00:00 [INF] Configuring web host (Properties.Microservice)...
+2021-04-16 12:39:42.913 +00:00 [INF] Starting web host (Properties.Microservice)...
+2021-04-16 12:39:43.429 +00:00 [INF] Run Startup
+2021-04-16 12:40:08.173 +00:00 [INF] Begin HttpGet call GetPropertiy for id 8cc32b40-578d-47c1-bb9f-63240737243f
+2021-04-16 12:40:08.853 +00:00 [WRN] Compiling a query which loads related collections for more than one collection navigation either via 'Include' or through projection but no 'QuerySplittingBehavior' has been configured. By default Entity Framework will use 'QuerySplittingBehavior.SingleQuery' which can potentially result in slow query performance. See https://go.microsoft.com/fwlink/?linkid=2134277 for more information. To identify the query that's triggering this warning call 'ConfigureWarnings(w => w.Throw(RelationalEventId.MultipleCollectionIncludeWarning))'
+2021-04-16 12:40:24.676 +00:00 [INF] Begin HttpGet call GetPropertyImages
+2021-04-16 12:41:32.507 +00:00 [INF] Configuring web host (Properties.Microservice)...
+2021-04-16 12:41:32.652 +00:00 [INF] Starting web host (Properties.Microservice)...
+2021-04-16 12:41:33.163 +00:00 [INF] Run Startup
+2021-04-16 12:41:37.180 +00:00 [INF] Begin HttpGet call GetPropertyImages
+2021-04-16 12:41:38.219 +00:00 [ERR] An error occurred using the connection to database 'Properties' on server 'osaka02s'.
+2021-04-16 12:41:38.243 +00:00 [ERR] An exception occurred while iterating over the results of a query for context type 'Properties.Data.PropertiesContext'.
+Microsoft.Data.SqlClient.SqlException (0x80131904): Cannot authenticate using Kerberos. Ensure Kerberos has been initialized on the client with 'kinit' and a Service Principal Name has been registered for the SQL Server to allow Kerberos authentication.
+ErrorCode=InternalError, Exception=Interop+NetSecurityNative+GssApiException: GSSAPI operation failed with error - Unspecified GSS failure.  Minor code may provide more information (SPNEGO cannot find mechanisms to negotiate).
+   at System.Net.Security.NegotiateStreamPal.GssInitSecurityContext(SafeGssContextHandle& context, SafeGssCredHandle credential, Boolean isNtlm, SafeGssNameHandle targetName, GssFlags inFlags, Byte[] buffer, Byte[]& outputBuffer, UInt32& outFlags, Int32& isNtlmUsed)
+   at System.Net.Security.NegotiateStreamPal.EstablishSecurityContext(SafeFreeNegoCredentials credential, SafeDeleteContext& context, String targetName, ContextFlagsPal inFlags, SecurityBuffer inputBuffer, SecurityBuffer outputBuffer, ContextFlagsPal& outFlags)
+   at Microsoft.Data.SqlClient.SNI.SNIProxy.GenSspiClientContext(SspiClientContextStatus sspiClientContextStatus, Byte[] receivedBuff, Byte[]& sendBuff, Byte[] serverName)
+   at Microsoft.Data.SqlClient.SNI.TdsParserStateObjectManaged.GenerateSspiClientContext(Byte[] receivedBuff, UInt32 receivedLength, Byte[]& sendBuff, UInt32& sendLength, Byte[] _sniSpnBuffer)
+   at Microsoft.Data.SqlClient.TdsParser.SNISSPIData(Byte[] receivedBuff, UInt32 receivedLength, Byte[]& sendBuff, UInt32& sendLength)
+   at Microsoft.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at Microsoft.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   at Microsoft.Data.SqlClient.TdsParser.SSPIError(String error, String procedure)
+   at Microsoft.Data.SqlClient.TdsParser.SNISSPIData(Byte[] receivedBuff, UInt32 receivedLength, Byte[]& sendBuff, UInt32& sendLength)
+   at Microsoft.Data.SqlClient.TdsParser.SSPIData(Byte[] receivedBuff, UInt32 receivedLength, Byte[]& sendBuff, UInt32& sendLength)
+   at Microsoft.Data.SqlClient.TdsParser.TdsLogin(SqlLogin rec, FeatureExtension requestedFeatures, SessionData recoverySessionData, Nullable`1 fedAuthFeatureExtensionData)
+   at Microsoft.Data.SqlClient.SqlInternalConnectionTds.Login(ServerInfo server, TimeoutTimer timeout, String newPassword, SecureString newSecurePassword)
+   at Microsoft.Data.SqlClient.SqlInternalConnectionTds.AttemptOneLogin(ServerInfo serverInfo, String newPassword, SecureString newSecurePassword, Boolean ignoreSniOpenTimeout, TimeoutTimer timeout, Boolean withFailover)
+   at Microsoft.Data.SqlClient.SqlInternalConnectionTds.LoginNoFailover(ServerInfo serverInfo, String newPassword, SecureString newSecurePassword, Boolean redirectedUserInstance, SqlConnectionString connectionOptions, SqlCredential credential, TimeoutTimer timeout)
+   at Microsoft.Data.SqlClient.SqlInternalConnectionTds.OpenLoginEnlist(TimeoutTimer timeout, SqlConnectionString connectionOptions, SqlCredential credential, String newPassword, SecureString newSecurePassword, Boolean redirectedUserInstance)
+   at Microsoft.Data.SqlClient.SqlInternalConnectionTds..ctor(DbConnectionPoolIdentity identity, SqlConnectionString connectionOptions, SqlCredential credential, Object providerInfo, String newPassword, SecureString newSecurePassword, Boolean redirectedUserInstance, SqlConnectionString userConnectionOptions, SessionData reconnectSessionData, Boolean applyTransientFaultHandling, String accessToken, DbConnectionPool pool)
+   at Microsoft.Data.SqlClient.SqlConnectionFactory.CreateConnection(DbConnectionOptions options, DbConnectionPoolKey poolKey, Object poolGroupProviderInfo, DbConnectionPool pool, DbConnection owningConnection, DbConnectionOptions userOptions)
+   at Microsoft.Data.ProviderBase.DbConnectionFactory.CreatePooledConnection(DbConnectionPool pool, DbConnection owningObject, DbConnectionOptions options, DbConnectionPoolKey poolKey, DbConnectionOptions userOptions)
+   at Microsoft.Data.ProviderBase.DbConnectionPool.CreateObject(DbConnection owningObject, DbConnectionOptions userOptions, DbConnectionInternal oldConnection)
+   at Microsoft.Data.ProviderBase.DbConnectionPool.UserCreateRequest(DbConnection owningObject, DbConnectionOptions userOptions, DbConnectionInternal oldConnection)
+   at Microsoft.Data.ProviderBase.DbConnectionPool.TryGetConnection(DbConnection owningObject, UInt32 waitForMultipleObjectsTimeout, Boolean allowCreate, Boolean onlyOneCheckConnection, DbConnectionOptions userOptions, DbConnectionInternal& connection)
+   at Microsoft.Data.ProviderBase.DbConnectionPool.WaitForPendingOpen()
+--- End of stack trace from previous location ---
+   at Microsoft.EntityFrameworkCore.Storage.RelationalConnection.OpenInternalAsync(Boolean errorsExpected, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalConnection.OpenInternalAsync(Boolean errorsExpected, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalConnection.OpenAsync(CancellationToken cancellationToken, Boolean errorsExpected)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.AsyncEnumerator.InitializeReaderAsync(DbContext _, Boolean result, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.SqlServer.Storage.Internal.SqlServerExecutionStrategy.ExecuteAsync[TState,TResult](TState state, Func`4 operation, Func`4 verifySucceeded, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.AsyncEnumerator.MoveNextAsync()
+ClientConnectionId:bb4ac78b-658f-479a-9793-53996dad7943
+Microsoft.Data.SqlClient.SqlException (0x80131904): Cannot authenticate using Kerberos. Ensure Kerberos has been initialized on the client with 'kinit' and a Service Principal Name has been registered for the SQL Server to allow Kerberos authentication.
+ErrorCode=InternalError, Exception=Interop+NetSecurityNative+GssApiException: GSSAPI operation failed with error - Unspecified GSS failure.  Minor code may provide more information (SPNEGO cannot find mechanisms to negotiate).
+   at System.Net.Security.NegotiateStreamPal.GssInitSecurityContext(SafeGssContextHandle& context, SafeGssCredHandle credential, Boolean isNtlm, SafeGssNameHandle targetName, GssFlags inFlags, Byte[] buffer, Byte[]& outputBuffer, UInt32& outFlags, Int32& isNtlmUsed)
+   at System.Net.Security.NegotiateStreamPal.EstablishSecurityContext(SafeFreeNegoCredentials credential, SafeDeleteContext& context, String targetName, ContextFlagsPal inFlags, SecurityBuffer inputBuffer, SecurityBuffer outputBuffer, ContextFlagsPal& outFlags)
+   at Microsoft.Data.SqlClient.SNI.SNIProxy.GenSspiClientContext(SspiClientContextStatus sspiClientContextStatus, Byte[] receivedBuff, Byte[]& sendBuff, Byte[] serverName)
+   at Microsoft.Data.SqlClient.SNI.TdsParserStateObjectManaged.GenerateSspiClientContext(Byte[] receivedBuff, UInt32 receivedLength, Byte[]& sendBuff, UInt32& sendLength, Byte[] _sniSpnBuffer)
+   at Microsoft.Data.SqlClient.TdsParser.SNISSPIData(Byte[] receivedBuff, UInt32 receivedLength, Byte[]& sendBuff, UInt32& sendLength)
+   at Microsoft.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at Microsoft.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   at Microsoft.Data.SqlClient.TdsParser.SSPIError(String error, String procedure)
+   at Microsoft.Data.SqlClient.TdsParser.SNISSPIData(Byte[] receivedBuff, UInt32 receivedLength, Byte[]& sendBuff, UInt32& sendLength)
+   at Microsoft.Data.SqlClient.TdsParser.SSPIData(Byte[] receivedBuff, UInt32 receivedLength, Byte[]& sendBuff, UInt32& sendLength)
+   at Microsoft.Data.SqlClient.TdsParser.TdsLogin(SqlLogin rec, FeatureExtension requestedFeatures, SessionData recoverySessionData, Nullable`1 fedAuthFeatureExtensionData)
+   at Microsoft.Data.SqlClient.SqlInternalConnectionTds.Login(ServerInfo server, TimeoutTimer timeout, String newPassword, SecureString newSecurePassword)
+   at Microsoft.Data.SqlClient.SqlInternalConnectionTds.AttemptOneLogin(ServerInfo serverInfo, String newPassword, SecureString newSecurePassword, Boolean ignoreSniOpenTimeout, TimeoutTimer timeout, Boolean withFailover)
+   at Microsoft.Data.SqlClient.SqlInternalConnectionTds.LoginNoFailover(ServerInfo serverInfo, String newPassword, SecureString newSecurePassword, Boolean redirectedUserInstance, SqlConnectionString connectionOptions, SqlCredential credential, TimeoutTimer timeout)
+   at Microsoft.Data.SqlClient.SqlInternalConnectionTds.OpenLoginEnlist(TimeoutTimer timeout, SqlConnectionString connectionOptions, SqlCredential credential, String newPassword, SecureString newSecurePassword, Boolean redirectedUserInstance)
+   at Microsoft.Data.SqlClient.SqlInternalConnectionTds..ctor(DbConnectionPoolIdentity identity, SqlConnectionString connectionOptions, SqlCredential credential, Object providerInfo, String newPassword, SecureString newSecurePassword, Boolean redirectedUserInstance, SqlConnectionString userConnectionOptions, SessionData reconnectSessionData, Boolean applyTransientFaultHandling, String accessToken, DbConnectionPool pool)
+   at Microsoft.Data.SqlClient.SqlConnectionFactory.CreateConnection(DbConnectionOptions options, DbConnectionPoolKey poolKey, Object poolGroupProviderInfo, DbConnectionPool pool, DbConnection owningConnection, DbConnectionOptions userOptions)
+   at Microsoft.Data.ProviderBase.DbConnectionFactory.CreatePooledConnection(DbConnectionPool pool, DbConnection owningObject, DbConnectionOptions options, DbConnectionPoolKey poolKey, DbConnectionOptions userOptions)
+   at Microsoft.Data.ProviderBase.DbConnectionPool.CreateObject(DbConnection owningObject, DbConnectionOptions userOptions, DbConnectionInternal oldConnection)
+   at Microsoft.Data.ProviderBase.DbConnectionPool.UserCreateRequest(DbConnection owningObject, DbConnectionOptions userOptions, DbConnectionInternal oldConnection)
+   at Microsoft.Data.ProviderBase.DbConnectionPool.TryGetConnection(DbConnection owningObject, UInt32 waitForMultipleObjectsTimeout, Boolean allowCreate, Boolean onlyOneCheckConnection, DbConnectionOptions userOptions, DbConnectionInternal& connection)
+   at Microsoft.Data.ProviderBase.DbConnectionPool.WaitForPendingOpen()
+--- End of stack trace from previous location ---
+   at Microsoft.EntityFrameworkCore.Storage.RelationalConnection.OpenInternalAsync(Boolean errorsExpected, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalConnection.OpenInternalAsync(Boolean errorsExpected, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalConnection.OpenAsync(CancellationToken cancellationToken, Boolean errorsExpected)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.AsyncEnumerator.InitializeReaderAsync(DbContext _, Boolean result, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.SqlServer.Storage.Internal.SqlServerExecutionStrategy.ExecuteAsync[TState,TResult](TState state, Func`4 operation, Func`4 verifySucceeded, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.AsyncEnumerator.MoveNextAsync()
+ClientConnectionId:bb4ac78b-658f-479a-9793-53996dad7943
+2021-04-16 12:41:38.344 +00:00 [ERR] An error has occurred: @error
+2021-04-16 12:43:45.303 +00:00 [INF] Configuring web host (Properties.Microservice)...
+2021-04-16 12:43:45.424 +00:00 [INF] Starting web host (Properties.Microservice)...
+2021-04-16 12:43:45.840 +00:00 [INF] Run Startup
+2021-04-16 12:44:05.474 +00:00 [INF] Begin HttpGet call GetPropertyImages
+2021-04-16 12:44:24.038 +00:00 [INF] Begin HttpPost call DeletePropertyImage for id 00000000-0000-0000-0000-000000000000
+2021-04-16 12:44:45.012 +00:00 [INF] Begin HttpGet call GetPropertyImages
+2021-04-16 12:44:54.799 +00:00 [INF] Begin HttpPost call CreatePropertyImage for: Properties.Models.PropertyImage
+2021-04-16 12:46:32.397 +00:00 [INF] Begin HttpGet call GetProperties
+2021-04-16 12:46:32.443 +00:00 [WRN] Compiling a query which loads related collections for more than one collection navigation either via 'Include' or through projection but no 'QuerySplittingBehavior' has been configured. By default Entity Framework will use 'QuerySplittingBehavior.SingleQuery' which can potentially result in slow query performance. See https://go.microsoft.com/fwlink/?linkid=2134277 for more information. To identify the query that's triggering this warning call 'ConfigureWarnings(w => w.Throw(RelationalEventId.MultipleCollectionIncludeWarning))'
+2021-04-16 12:47:02.170 +00:00 [INF] Begin HttpPost call CreatePropertyImage for: Properties.Models.PropertyImage
+2021-04-16 12:47:42.586 +00:00 [INF] Begin HttpPost call CreatePropertyImage for: Properties.Models.PropertyImage
+2021-04-16 12:59:27.063 +00:00 [INF] Begin HttpPost call CreatePropertyTrace for: Properties.Models.PropertyTrace
+2021-04-16 13:02:01.876 +00:00 [INF] Begin HttpGet call GetProperties
+2021-04-16 13:02:46.082 +00:00 [INF] Begin HttpPost call CreatePropertyTrace for: Properties.Models.PropertyTrace
+2021-04-16 13:06:29.778 +00:00 [INF] Configuring web host (Properties.Microservice)...
+2021-04-16 13:06:29.887 +00:00 [INF] Starting web host (Properties.Microservice)...
+2021-04-16 13:06:30.322 +00:00 [INF] Run Startup
+2021-04-16 13:06:51.565 +00:00 [INF] Begin HttpGet call GetProperties
+2021-04-16 13:06:52.209 +00:00 [WRN] Compiling a query which loads related collections for more than one collection navigation either via 'Include' or through projection but no 'QuerySplittingBehavior' has been configured. By default Entity Framework will use 'QuerySplittingBehavior.SingleQuery' which can potentially result in slow query performance. See https://go.microsoft.com/fwlink/?linkid=2134277 for more information. To identify the query that's triggering this warning call 'ConfigureWarnings(w => w.Throw(RelationalEventId.MultipleCollectionIncludeWarning))'
+2021-04-16 08:33:20.957 -05:00 [INF] Configuring web host (Properties.Microservice)...
+2021-04-16 08:33:21.094 -05:00 [INF] Starting web host (Properties.Microservice)...
+2021-04-16 08:33:25.290 -05:00 [INF] Run Startup
+2021-04-16 08:34:22.619 -05:00 [INF] Begin HttpPost call CreatePropertyImage for: Properties.Models.PropertyImage
+2021-04-16 08:34:36.348 -05:00 [INF] Begin HttpPost call CreatePropertyImage for: Properties.Models.PropertyImage
+2021-04-16 08:34:47.366 -05:00 [INF] Begin HttpPost call CreatePropertyImage for: Properties.Models.PropertyImage
+2021-04-16 08:36:04.484 -05:00 [INF] Configuring web host (Properties.Microservice)...
+2021-04-16 08:36:04.647 -05:00 [INF] Starting web host (Properties.Microservice)...
+2021-04-16 08:36:06.131 -05:00 [INF] Run Startup
+2021-04-16 08:36:19.533 -05:00 [INF] Begin HttpGet call GetProperties
+2021-04-16 08:36:20.250 -05:00 [WRN] Compiling a query which loads related collections for more than one collection navigation either via 'Include' or through projection but no 'QuerySplittingBehavior' has been configured. By default Entity Framework will use 'QuerySplittingBehavior.SingleQuery' which can potentially result in slow query performance. See https://go.microsoft.com/fwlink/?linkid=2134277 for more information. To identify the query that's triggering this warning call 'ConfigureWarnings(w => w.Throw(RelationalEventId.MultipleCollectionIncludeWarning))'
+2021-04-16 08:38:09.414 -05:00 [INF] Begin HttpPost call CreatePropertyImage for: Properties.Models.PropertyImage
+2021-04-16 08:38:29.746 -05:00 [INF] Begin HttpPost call CreatePropertyImage for: Properties.Models.PropertyImage
+2021-04-16 08:38:49.137 -05:00 [INF] Begin HttpPost call CreatePropertyImage for: Properties.Models.PropertyImage
+2021-04-16 08:38:54.064 -05:00 [INF] Begin HttpPost call CreatePropertyImage for: Properties.Models.PropertyImage
+2021-04-16 08:38:54.727 -05:00 [INF] Begin HttpPost call CreatePropertyImage for: Properties.Models.PropertyImage
+2021-04-16 08:39:30.249 -05:00 [INF] Begin HttpPost call CreatePropertyImage for: Properties.Models.PropertyImage
+2021-04-16 08:39:41.643 -05:00 [INF] Begin HttpPost call CreatePropertyImage for: Properties.Models.PropertyImage
+2021-04-16 08:40:03.117 -05:00 [INF] Begin HttpPost call CreatePropertyImage for: Properties.Models.PropertyImage
+2021-04-16 08:40:17.564 -05:00 [INF] Begin HttpPost call CreatePropertyImage for: Properties.Models.PropertyImage
+2021-04-16 08:40:55.300 -05:00 [INF] Begin HttpPost call CreatePropertyTrace for: Properties.Models.PropertyTrace
+2021-04-16 08:41:27.965 -05:00 [INF] Begin HttpPost call CreatePropertyTrace for: Properties.Models.PropertyTrace
+2021-04-16 08:42:15.121 -05:00 [INF] Begin HttpPost call CreatePropertyTrace for: Properties.Models.PropertyTrace
+2021-04-16 08:42:22.786 -05:00 [INF] Begin HttpGet call GetProperties
+2021-04-16 08:48:13.268 -05:00 [INF] Configuring web host (Properties.Microservice)...
+2021-04-16 08:48:13.439 -05:00 [INF] Starting web host (Properties.Microservice)...
+2021-04-16 08:48:15.042 -05:00 [INF] Run Startup
+2021-04-16 08:48:26.925 -05:00 [INF] Begin HttpGet call GetProperties
+2021-04-16 08:48:27.656 -05:00 [WRN] Compiling a query which loads related collections for more than one collection navigation either via 'Include' or through projection but no 'QuerySplittingBehavior' has been configured. By default Entity Framework will use 'QuerySplittingBehavior.SingleQuery' which can potentially result in slow query performance. See https://go.microsoft.com/fwlink/?linkid=2134277 for more information. To identify the query that's triggering this warning call 'ConfigureWarnings(w => w.Throw(RelationalEventId.MultipleCollectionIncludeWarning))'

@@ -1,0 +1,38 @@
+syntax = "proto3";
+
+option csharp_namespace = "Properties.Services.PropertyTraceTypes";
+
+import public "Protos/DomainEntities.proto";
+
+package PropertyTraceTypes;
+
+//------------ Requests ------------//
+// Contiene el id del PropertyTrace.
+message GetPropertyTraceRequest {
+  string Id = 1;
+}
+// Contiene el id del PropertyTrace.
+message GetPropertyTracesRequest {
+}
+// Contiene el id del PropertyTrace.
+message PropertyTraceRequest {
+  DomainEntities.PropertyTrace PropertyTrace = 1;
+}
+// Contiene el id del PropertyTrace.
+message DeletePropertyTraceRequest {
+  string Id = 1;
+}
+
+//------------ Responses ------------//
+// Contiene una colección de PropertyTrace.
+message PropertyTracesResponse {
+  repeated DomainEntities.PropertyTrace PropertyTraces = 1;
+}
+// Contiene un PropertyTrace.
+message PropertyTraceResponse {
+  DomainEntities.PropertyTrace PropertyTrace = 1;
+}
+// Contiene un bool.
+message DeletePropertyTraceResponse {
+  bool Success = 1;
+}

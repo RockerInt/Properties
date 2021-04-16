@@ -1,0 +1,29 @@
+syntax = "proto3";
+
+option csharp_namespace = "Properties.Service";
+
+import public "Protos/DomainEntities.proto";
+import public "Protos/Property.proto";
+import public "Protos/PropertyTrace.proto";
+
+package PropertyServices;
+
+// Definición del servicio de Property. 
+service Property {
+  // CRUD
+  rpc GetProperty    (PropertyTypes.GetPropertyRequest)    returns (PropertyTypes.PropertyResponse) {}
+  rpc GetProperties  (PropertyTypes.GetPropertiesRequest)  returns (PropertyTypes.PropertiesResponse) {}
+  rpc CreateProperty (PropertyTypes.PropertyRequest)       returns (PropertyTypes.PropertyResponse) {}
+  rpc UpdateProperty (PropertyTypes.PropertyRequest)       returns (PropertyTypes.PropertyResponse) {}
+  rpc DeleteProperty (PropertyTypes.DeletePropertyRequest) returns (PropertyTypes.DeletePropertyResponse) {}
+}
+
+// Definición del servicio de PropertyTrace.
+service PropertyTrace {
+  // CRUD
+  rpc GetPropertyTrace    (PropertyTraceTypes.GetPropertyTraceRequest)    returns (PropertyTraceTypes.PropertyTraceResponse) {}
+  rpc GetPropertyTraces   (PropertyTraceTypes.GetPropertyTracesRequest)   returns (PropertyTraceTypes.PropertyTracesResponse) {}
+  rpc CreatePropertyTrace (PropertyTraceTypes.PropertyTraceRequest)       returns (PropertyTraceTypes.PropertyTraceResponse) {}
+  rpc UpdatePropertyTrace (PropertyTraceTypes.PropertyTraceRequest)       returns (PropertyTraceTypes.PropertyTraceResponse) {}
+  rpc DeletePropertyTrace (PropertyTraceTypes.DeletePropertyTraceRequest) returns (PropertyTraceTypes.DeletePropertyTraceResponse) {}
+}

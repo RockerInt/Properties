@@ -1,0 +1,38 @@
+syntax = "proto3";
+
+option csharp_namespace = "Properties.Services.PropertyTypes";
+
+import public "Protos/DomainEntities.proto";
+
+package PropertyTypes; 
+
+//------------ Requests ------------//
+// Contiene el id del Property.
+message GetPropertyRequest {
+  string Id = 1;
+}
+// Contiene el id del Property.
+message GetPropertiesRequest {
+}
+// Contiene el id del Property.
+message PropertyRequest {
+  DomainEntities.Property Property = 1;
+}
+// Contiene el id del Property.
+message DeletePropertyRequest {
+  string Id = 1;
+}
+
+//------------ Responses ------------//
+// Contiene una colección de Property.
+message PropertiesResponse {
+  repeated DomainEntities.Property Properties = 1;
+}
+// Contiene un Property.
+message PropertyResponse {
+  DomainEntities.Property Property = 1;
+}
+// Contiene un bool.
+message DeletePropertyResponse {
+  bool Success = 1;
+}

@@ -1,0 +1,49 @@
+syntax = "proto3";
+
+option csharp_namespace = "Properties.Services.Entities";
+
+import public "Protos/CustomTypes.proto";
+import public "google/protobuf/timestamp.proto";
+
+package DomainEntities;
+
+// Esta entidad no tiene implementación de servicio por la imagen, 
+// mas adelate se implementará
+message Owner {
+  string IdOwner = 1;
+  string Name = 2;
+  string Address = 3;
+  google.protobuf.Timestamp Birthday = 4;
+  //bytes Photo = 5;
+}
+
+message Property {
+  string IdProperty = 1;
+  string Name = 2;
+  string Address = 3;
+  CustomTypes.DecimalValue Price = 4;
+  int32 CodeInternal = 6;
+  int32 Year = 7;
+  string IdOwner = 8;
+  Owner Owner = 9;
+  repeated PropertyImage PropertyImages = 10;
+  repeated PropertyTrace PropertyTraces = 11;
+}
+
+// Esta entidad no tiene implementación de servicio por la imagen, 
+// mas adelate se implementará
+message PropertyImage {
+  string IdPropertyImage = 1;
+  string IdProperty = 2;
+  bool Enabled = 3;
+  //bytes File = 4;
+}
+
+message PropertyTrace {
+  string IdPropertyTrace = 1;
+  google.protobuf.Timestamp DateSale = 2;
+  string Name = 3;
+  CustomTypes.DecimalValue Value = 4;
+  CustomTypes.DecimalValue Tax = 5;
+  string IdProperty = 6;
+}
