@@ -4,21 +4,19 @@ services:
   properties:
     environment:
       - ASPNETCORE_ENVIRONMENT=Development
-      - ASPNETCORE_URLS=https://+:443;http://+:80
+      - ASPNETCORE_URLS=http://+:80
       - GRPC_PORT=81
     ports:
       - "81:81"
       - "52964:80"
-      - "44304:443"
 
   gateway:
     environment:
       - ASPNETCORE_ENVIRONMENT=Development
-      - ASPNETCORE_URLS=https://+:443;http://+:80
+      - ASPNETCORE_URLS=http://+:80
       - GRPC=false
     ports:
       - "50412:80"
-      - "44333:443"
 
   sqlserver:
     environment:
@@ -28,10 +26,10 @@ services:
     ports:
       - 1433:1433
     volumes:
-      - ${APPDATA}/ASP.NET/DBs:/var/opt/mssql
+      - ~/.aspnet/DBs:/var/opt/mssql
 
   nosqldata:
     ports:
       - "27017:27017"
     volumes:
-      - ${APPDATA}/ASP.NET/Mongo:/data/db
+      - ~/.aspnet/Mongo:/data/db

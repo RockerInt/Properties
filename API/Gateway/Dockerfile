@@ -3,17 +3,16 @@
 FROM mcr.microsoft.com/dotnet/aspnet:5.0-buster-slim AS base
 WORKDIR /app
 EXPOSE 80
-EXPOSE 443
 
 FROM mcr.microsoft.com/dotnet/sdk:5.0-buster-slim AS build
 WORKDIR /src
 COPY ["API/Gateway/Gateway.csproj", "API/Gateway/"]
 COPY ["Libraries/Utilities/Utilities.csproj", "Libraries/Utilities/"]
-COPY ["Libraries/Models/Models.csproj", "Libraries/Models/"]
 RUN dotnet restore "API/Gateway/Gateway.csproj"
 COPY . .
 WORKDIR "/src/API/Gateway"
 RUN dotnet build "Gateway.csproj" -c Release -o /app/build
+RUN dotnet dev-certs https --trust
 
 FROM build AS publish
 RUN dotnet publish "Gateway.csproj" -c Release -o /app/publish
