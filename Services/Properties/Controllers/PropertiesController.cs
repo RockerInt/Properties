@@ -9,6 +9,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 using Properties.Data;
 using Properties.Models;
+using Properties.Models.Parameters;
 using Properties.Repositories;
 using Utilities;
 
@@ -34,13 +35,13 @@ namespace Properties.Controllers
         [HttpGet]
         [Route("Get")]
         [ProducesResponseType(typeof(IEnumerable<Property>), (int)HttpStatusCode.OK)]
-        public async Task<IActionResult> GetProperties() =>
+        public async Task<IActionResult> GetProperties([FromQuery] PropertiesParameters parameters) =>
             await Utilities.Utilities.TryCatchAsync(
                 async () =>
                 {
                     _logger.LogInformation("Begin HttpGet call GetProperties");
 
-                    var response = await _repository.GetProperties();
+                    var response = await _repository.GetProperties(parameters);
 
                     if (response != null && response.Any())
                         return Ok(response.JsonSerialize());

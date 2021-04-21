@@ -75,7 +75,7 @@ namespace Properties.Data
                     .HasMaxLength(100)
                     .IsUnicode(false);
 
-                entity.Property(e => e.Price).HasColumnType("decimal(12, 2)");
+                entity.Property(e => e.Price).HasColumnType("decimal(18, 2)");
 
                 entity.HasOne(d => d.Owner)
                     .WithMany(p => p.Properties)
@@ -118,9 +118,9 @@ namespace Properties.Data
                     .HasMaxLength(100)
                     .IsUnicode(false);
 
-                entity.Property(e => e.Tax).HasColumnType("decimal(12, 2)");
+                entity.Property(e => e.Tax).HasColumnType("decimal(18, 2)");
 
-                entity.Property(e => e.Value).HasColumnType("decimal(12, 2)");
+                entity.Property(e => e.Value).HasColumnType("decimal(18, 2)");
 
                 entity.HasOne(d => d.Property)
                     .WithMany(p => p.PropertyTraces)

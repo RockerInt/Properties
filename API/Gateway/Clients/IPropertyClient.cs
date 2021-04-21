@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Gateway.Models.Parameters;
+using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
@@ -6,13 +7,13 @@ namespace Properties.Gateway.Clients
 {
     public interface IPropertyClient
     {
-        Task<IEnumerable<Properties.Models.Complete.Property>> Get();
+        Task<IEnumerable<Models.Complete.Property>> Get(PropertiesParameters parameters);
 
-        Task<Properties.Models.Complete.Property> GetById(Guid id);
+        Task<Models.Complete.Property> GetById(Guid id);
 
-        Task<Properties.Models.Lite.PropertyLite> Create(Properties.Models.Lite.PropertyLite @property);
+        Task<Models.Lite.PropertyLite> Create(Models.Lite.PropertyLite @property);
 
-        Task<Properties.Models.Lite.PropertyLite> Update(Properties.Models.Lite.PropertyLite @property);
+        Task<Models.Lite.PropertyLite> Update(Models.Lite.PropertyLite @property);
 
         Task<bool> Delete(Guid id);
     }

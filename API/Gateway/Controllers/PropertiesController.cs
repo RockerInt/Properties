@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Net;
 using System.Threading.Tasks;
 using Utilities;
+using Gateway.Models.Parameters;
 
 namespace Properties.Gateway.Controllers
 {
@@ -26,10 +27,15 @@ namespace Properties.Gateway.Controllers
         /// <returns>Retorna una colección de Property</returns>
         [HttpGet]
         [Route("Get")]
-        [ProducesResponseType(typeof(IEnumerable<Properties.Models.Complete.Property>), (int)HttpStatusCode.OK)]
-        public async Task<IActionResult> GetProperties() =>
+        [ProducesResponseType(typeof(IEnumerable<Models.Complete.Property>), (int)HttpStatusCode.OK)]
+        public async Task<IActionResult> GetProperties([FromQuery] PropertiesParameters parameters) =>
             await Utilities.Utilities.TryCatchAsync(
-                async () => (IActionResult)Ok(await _service.GetProperties()),
+                async () =>
+                {
+                    if (!parameters.ValidYearRange) return BadRequest("Max year cannot be less than min year");
+                    if (!parameters.ValidPriceRange) return BadRequest("Max price cannot be less than min price");
+                    return Ok(await _service.GetProperties(parameters));
+                },
                 HttpErrorHandler
             );
 
@@ -42,7 +48,7 @@ namespace Properties.Gateway.Controllers
         [Route("Get/{id}")]
         [ProducesResponseType((int)HttpStatusCode.NotFound)]
         [ProducesResponseType((int)HttpStatusCode.BadRequest)]
-        [ProducesResponseType(typeof(Properties.Models.Complete.Property), (int)HttpStatusCode.OK)]
+        [ProducesResponseType(typeof(Models.Complete.Property), (int)HttpStatusCode.OK)]
         public async Task<IActionResult> GetProperty(Guid id) =>
             await Utilities.Utilities.TryCatchAsync(
                 async () =>
@@ -68,7 +74,7 @@ namespace Properties.Gateway.Controllers
         [Route("Create")]
         [ProducesResponseType((int)HttpStatusCode.BadRequest)]
         [ProducesResponseType((int)HttpStatusCode.Created)]
-        public async Task<IActionResult> CreateProperty([FromBody] Properties.Models.Lite.PropertyLite @property) =>
+        public async Task<IActionResult> CreateProperty([FromBody] Models.Lite.PropertyLite @property) =>
             await Utilities.Utilities.TryCatchAsync(
                async () => ModelState.IsValid ?
                     StatusCode((int)HttpStatusCode.Created, await _service.CreateProperty(@property))

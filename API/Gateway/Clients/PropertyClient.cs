@@ -8,6 +8,7 @@ using Utilities;
 using Properties.Services;
 using Microsoft.Extensions.Logging;
 using Properties.Service;
+using Gateway.Models.Parameters;
 
 namespace Properties.Gateway.Clients
 {
@@ -24,7 +25,7 @@ namespace Properties.Gateway.Clients
             _Grpc = Convert.ToBoolean(Environment.GetEnvironmentVariable("GRPC")?.ToLower() ?? "false");
         }
 
-        public async Task<IEnumerable<Properties.Models.Complete.Property>> Get() => 
+        public async Task<IEnumerable<Models.Complete.Property>> Get(PropertiesParameters parameters = null) => 
             _Grpc ? await GrpcCallerService.CallService(_urls.PropertiesGrpc, async channel =>
             {
                 var client = new Property.PropertyClient(channel);
@@ -34,12 +35,15 @@ namespace Properties.Gateway.Clients
 
                 return response.Properties.Select(p => MapToPropertyComplete(p));
             }) :
-            WebUtilities.MapListResponse<Properties.Models.Complete.Property>(
-                await WebUtilities.ConectAsync(WebUtilities.Method.Get, _urls.PropertiesService, UrlsConfig.PropertyOperations.Get(), null)
+            WebUtilities.MapListResponse<Models.Complete.Property>(
+                await WebUtilities.ConectAsync(WebUtilities.Method.Get, _urls.PropertiesService, UrlsConfig.PropertyOperations.Get
+                    (parameters is null ? string.Empty : $"?{parameters.GetQueryString()}"), 
+                    null
+                )
             );
                 
 
-        public async Task<Properties.Models.Complete.Property> GetById(Guid id) =>
+        public async Task<Models.Complete.Property> GetById(Guid id) =>
             _Grpc ? await GrpcCallerService.CallService(_urls.PropertiesGrpc, async channel =>
             {
                 var client = new Property.PropertyClient(channel);
@@ -49,11 +53,11 @@ namespace Properties.Gateway.Clients
 
                 return MapToPropertyComplete(response.Property);
             }) :
-            WebUtilities.MapResponse<Properties.Models.Complete.Property>(
+            WebUtilities.MapResponse<Models.Complete.Property>(
                 await WebUtilities.ConectAsync(WebUtilities.Method.Get, _urls.PropertiesService, UrlsConfig.PropertyOperations.GetById(id), null)
             );
 
-        public async Task<Properties.Models.Lite.PropertyLite> Create(Properties.Models.Lite.PropertyLite @property) =>
+        public async Task<Models.Lite.PropertyLite> Create(Models.Lite.PropertyLite @property) =>
             _Grpc ? await GrpcCallerService.CallService(_urls.PropertiesGrpc, async channel =>
             {
                 var client = new Property.PropertyClient(channel);
@@ -63,11 +67,11 @@ namespace Properties.Gateway.Clients
 
                 return MapToPropertyLite(response.Property);
             }) :
-            WebUtilities.MapResponse<Properties.Models.Lite.PropertyLite>(
+            WebUtilities.MapResponse<Models.Lite.PropertyLite>(
                 await WebUtilities.ConectAsync(WebUtilities.Method.Post, _urls.PropertiesService, UrlsConfig.PropertyOperations.Create(), @property)
             );
 
-        public async Task<Properties.Models.Lite.PropertyLite> Update(Properties.Models.Lite.PropertyLite @property) =>
+        public async Task<Models.Lite.PropertyLite> Update(Models.Lite.PropertyLite @property) =>
             _Grpc ? await GrpcCallerService.CallService(_urls.PropertiesGrpc, async channel =>
             {
                 var client = new Property.PropertyClient(channel);
@@ -77,7 +81,7 @@ namespace Properties.Gateway.Clients
 
                 return MapToPropertyLite(response.Property);
             }) :
-            WebUtilities.MapResponse<Properties.Models.Lite.PropertyLite>(
+            WebUtilities.MapResponse<Models.Lite.PropertyLite>(
                 await WebUtilities.ConectAsync(WebUtilities.Method.Post, _urls.PropertiesService, UrlsConfig.PropertyOperations.Update(), @property)
             );
 
@@ -95,7 +99,7 @@ namespace Properties.Gateway.Clients
                 .StatusCode == System.Net.HttpStatusCode.NoContent;
 
         #region Mappers
-        private static Properties.Services.Entities.Property MapToProperty(Properties.Models.Lite.PropertyLite @property)
+        private static Properties.Services.Entities.Property MapToProperty(Models.Lite.PropertyLite @property)
         {
             var _property = new Properties.Services.Entities.Property()
             {
@@ -110,7 +114,7 @@ namespace Properties.Gateway.Clients
 
             return _property;
         }
-        private static Properties.Services.Entities.Property MapToProperty(Properties.Models.Complete.Property @property)
+        private static Properties.Services.Entities.Property MapToProperty(Models.Complete.Property @property)
         {
             var _property = new Properties.Services.Entities.Property()
             {
@@ -165,11 +169,11 @@ namespace Properties.Gateway.Clients
             return _property;
         }
 
-        private static Properties.Models.Lite.PropertyLite MapToPropertyLite(Properties.Services.Entities.Property @property, Properties.Models.Lite.PropertyLite newProperty = null)
+        private static Models.Lite.PropertyLite MapToPropertyLite(Properties.Services.Entities.Property @property, Models.Lite.PropertyLite newProperty = null)
         {
             if (newProperty is null)
             {
-                newProperty = new Properties.Models.Lite.PropertyLite()
+                newProperty = new Models.Lite.PropertyLite()
                 {
                     IdProperty = @property.IdProperty?.ToGuid().Value ?? Guid.NewGuid(),
                     Name = @property.Name,
@@ -193,11 +197,11 @@ namespace Properties.Gateway.Clients
 
             return newProperty;
         }
-        private static Properties.Models.Complete.Property MapToPropertyComplete(Properties.Services.Entities.Property @property, Properties.Models.Complete.Property newProperty = null)
+        private static Models.Complete.Property MapToPropertyComplete(Properties.Services.Entities.Property @property, Models.Complete.Property newProperty = null)
         {
             if (newProperty is null)
             {
-                newProperty = new Properties.Models.Complete.Property()
+                newProperty = new Models.Complete.Property()
                 {
                     IdProperty = @property.IdProperty?.ToGuid().Value ?? Guid.NewGuid(),
                     Name = @property.Name,
@@ -205,7 +209,7 @@ namespace Properties.Gateway.Clients
                     Price = @property.Price,
                     CodeInternal = @property.CodeInternal,
                     Year = Convert.ToInt16(@property.Year),
-                    Owner = @property.Owner is null ? null : new Properties.Models.Lite.OwnerLite()
+                    Owner = @property.Owner is null ? null : new Models.Lite.OwnerLite()
                     {
                         IdOwner = @property.Owner.IdOwner?.ToGuid() ?? Guid.NewGuid(),
                         Name = @property.Owner.Name,
@@ -222,7 +226,7 @@ namespace Properties.Gateway.Clients
                 newProperty.Price = @property.Price;
                 newProperty.CodeInternal = @property.CodeInternal;
                 newProperty.Year = Convert.ToInt16(@property.Year);
-                newProperty.Owner = @property.Owner?.IdOwner is null ? null : new Properties.Models.Lite.OwnerLite()
+                newProperty.Owner = @property.Owner?.IdOwner is null ? null : new Models.Lite.OwnerLite()
                 {
                     IdOwner = @property.Owner.IdOwner?.ToGuid() ?? Guid.NewGuid(),
                     Name = @property.Owner.Name,
@@ -235,7 +239,7 @@ namespace Properties.Gateway.Clients
             {
                 foreach (var item in @property.PropertyImages)
                 {
-                    newProperty.PropertyImages.Add(new Properties.Models.Lite.PropertyImageLite()
+                    newProperty.PropertyImages.Add(new Models.Lite.PropertyImageLite()
                     {
                         IdPropertyImage = item.IdPropertyImage?.ToGuid() ?? Guid.NewGuid(),
                         Enabled = item.Enabled,
@@ -248,7 +252,7 @@ namespace Properties.Gateway.Clients
             {
                 foreach (var item in @property.PropertyTraces)
                 {
-                    newProperty.PropertyTraces.Add(new Properties.Models.Lite.PropertyTraceLite()
+                    newProperty.PropertyTraces.Add(new Models.Lite.PropertyTraceLite()
                     {
                         IdPropertyTrace = item.IdProperty?.ToGuid() ?? Guid.NewGuid(),
                         Name = item.Name,

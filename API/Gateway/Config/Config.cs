@@ -14,7 +14,7 @@ namespace Properties.Gateway.Config
 
         public class PropertyOperations
         {
-            public static string Get() => $"/api/v1/Properties/Get";
+            public static string Get(string queryString) => $"/api/v1/Properties/Get{queryString}";
 
             public static string GetById(Guid id) => $"/api/v1/Properties/Get/{id}";
 

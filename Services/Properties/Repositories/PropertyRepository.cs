@@ -3,6 +3,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 using Properties.Data;
 using Properties.Models;
+using Properties.Models.Parameters;
 using Properties.Services.PropertyTypes;
 using System;
 using System.Collections.Generic;
@@ -23,10 +24,27 @@ namespace Properties.Repositories
 
         // Basic CRUD for Property
 
-        public async Task<List<Property>> GetProperties() => 
-            await _context.Properties.Include(l => l.Owner)
-                                     .Include(a => a.PropertyImages)
-                                     .Include(l => l.PropertyTraces).ToListAsync();
+        public async Task<List<Property>> GetProperties(PropertiesParameters parameters = null)
+        {
+            IQueryable<Property> properties = _context.Properties.Include(l => l.Owner)
+                                                                 .Include(a => a.PropertyImages)
+                                                                 .Include(l => l.PropertyTraces);
+
+            if (parameters != null)
+                properties = properties.Where(
+                    x => parameters.MinPrice <= x.Price && x.Price <= parameters.MaxPrice &&
+                         parameters.MinYear <= x.Year && x.Year <= parameters.MaxYear
+                );
+
+            properties = properties.OrderBy(x => x.Price);
+
+            if (parameters?.Paging ?? false)
+                return await properties.Skip((parameters.PageNumber - 1) * parameters.PageSize)
+                                       .Take(parameters.PageSize)
+                                       .ToListAsync();
+
+            return await properties.ToListAsync();
+        }
 
         public async Task<Property> GetProperty(Guid id) =>
             await _context.Properties.Include(l => l.Owner)

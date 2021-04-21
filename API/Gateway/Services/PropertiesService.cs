@@ -5,6 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Gateway.Models.Parameters;
 
 namespace Properties.Gateway.Services
 {
@@ -19,16 +20,16 @@ namespace Properties.Gateway.Services
             _properties = properties;
         }
 
-        public async Task<IEnumerable<Properties.Models.Complete.Property>> GetProperties()
+        public async Task<IEnumerable<Models.Complete.Property>> GetProperties(PropertiesParameters parameters)
         {
             _logger.LogDebug("Property client created, request = Get");
-            var response = await _properties.Get();
+            var response = await _properties.Get(parameters);
             _logger.LogDebug("Property response {@response}", response);
 
             return response;
         }
 
-        public async Task<Properties.Models.Complete.Property> GetPropertyById(Guid id)
+        public async Task<Models.Complete.Property> GetPropertyById(Guid id)
         {
             _logger.LogDebug("Property client created, request = GetPropertyById{@id}", id);
             var response = await _properties.GetById(id);
@@ -37,7 +38,7 @@ namespace Properties.Gateway.Services
             return response;
         }
 
-        public async Task<Properties.Models.Lite.PropertyLite> CreateProperty(Properties.Models.Lite.PropertyLite @property)
+        public async Task<Models.Lite.PropertyLite> CreateProperty(Models.Lite.PropertyLite @property)
         {
             _logger.LogDebug("Property client created, request = CreateProperty{@property}", @property);
             var response = await _properties.Create(@property);
