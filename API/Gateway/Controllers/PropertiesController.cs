@@ -83,7 +83,48 @@ namespace Properties.Gateway.Controllers
                HttpErrorHandler
             );
 
-        
+        /// <summary>
+        /// Agrega una nueva Property
+        /// </summary>
+        /// <param name="property">Property a crear</param>
+        /// <returns>Retorna la Property creada</returns>
+        [HttpPost]
+        [Route("Update")]
+        [ProducesResponseType((int)HttpStatusCode.BadRequest)]
+        [ProducesResponseType((int)HttpStatusCode.Created)]
+        public async Task<IActionResult> UpdateProperty([FromBody] Models.Lite.PropertyLite @property) =>
+            await Utilities.Utilities.TryCatchAsync(
+               async () => ModelState.IsValid ?
+                    Ok(await _service.UpdateProperty(@property))
+                    : BadRequest()
+               ,
+                async error =>
+                {
+                    if (!_service.PropertyExists(@property.IdProperty))
+                        return NotFound($"The property with id {@property.IdProperty} do not exist");
+                    return await HttpErrorHandler(error);
+                }
+            );
+
+        /// <summary>
+        /// Agrega una nueva PropertyImage
+        /// </summary>
+        /// <param name="propertyImage">Property a crear</param>
+        /// <returns>Retorna la PropertyImage creada</returns>
+        [HttpPost]
+        [Route("CreateImage")]
+        [ProducesResponseType((int)HttpStatusCode.BadRequest)]
+        [ProducesResponseType((int)HttpStatusCode.Created)]
+        public async Task<IActionResult> CreatePropertyImage([FromBody] Models.Lite.PropertyImageLite propertyImage) =>
+            await Utilities.Utilities.TryCatchAsync(
+               async () => ModelState.IsValid ?
+                    StatusCode((int)HttpStatusCode.Created, await _service.CreatePropertyImage(propertyImage))
+                    : BadRequest()
+               ,
+               HttpErrorHandler
+            );
+
+
 
         private async Task<IActionResult> HttpErrorHandler(Exception e) => await Task.FromResult(StatusCode((int)HttpStatusCode.InternalServerError, $"An error has occurred, contact the administrator! {e}"));
     }

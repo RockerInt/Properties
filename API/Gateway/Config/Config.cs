@@ -24,6 +24,19 @@ namespace Properties.Gateway.Config
 
             public static string Delete(Guid id) => $"/api/v1/Properties/Delete/{id}";
         }
+
+        public class PropertyImagesOperations
+        {
+            public static string Get() => "/api/v1/PropertyImages/Get";
+
+            public static string GetById(Guid id) => $"/api/v1/PropertyImages/Get/{id}";
+
+            public static string Create() => $"/api/v1/PropertyImages/Create";
+
+            public static string Update() => $"/api/v1/PropertyImages/Update";
+
+            public static string Delete(Guid id) => $"/api/v1/PropertyImages/Delete/{id}";
+        }
     }
 
 }

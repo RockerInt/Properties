@@ -44,9 +44,8 @@ namespace Properties.Gateway
             services.AddScoped<PropertiesService>();
 
             // Clients
-            services.AddScoped<PropertyClient>();
-            //services.AddScoped<EditorialesClient>();
-            //services.AddScoped<LibrosClient>();
+            services.AddScoped<IPropertyClient, PropertyClient>();
+            services.AddScoped<IPropertyImageClient, PropertyImageClient>();
 
             // ---------------------- /Scopeds ----------------------- //
 
